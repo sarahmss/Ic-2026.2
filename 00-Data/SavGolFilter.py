@@ -14,6 +14,8 @@ import math
 TITLES = [
     "LSG-1",
     "LSG-2",
+    "SuperZZ1",
+    "SuperZZ2",
     "ZZx1-inv",
     "ZZx1",
     "ZZx2-inv2",
@@ -64,7 +66,7 @@ parametros_savgol = {
 # CAMINHOS
 # ============================================================
 
-os.chdir("./Final/Data")
+os.chdir("./00-Data")
 
 input_path = "./Datasets.xlsx"
 output_path = "./SavgolDatasets.xlsx"
