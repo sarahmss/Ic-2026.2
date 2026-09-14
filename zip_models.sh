@@ -40,22 +40,34 @@ echo "Buscando pastas 'models' em: $SEARCH_DIR"
 echo
 
 # ---------------------------------------------------------------------------
-# 2. Garante que a pasta "models" (em qualquer nível) seja ignorada pelo git,
-#    mas que o .zip ao lado dela continue rastreável.
+# 2. Garante que as pastas "models", "tf-env" e "venv" sejam ignoradas pelo git
 # ---------------------------------------------------------------------------
+
 GITIGNORE="$ROOT_DIR/.gitignore"
-IGNORE_LINE="**/models/"
 
 touch "$GITIGNORE"
-if ! grep -qxF "$IGNORE_LINE" "$GITIGNORE"; then
-    {
-        echo ""
-        echo "# Pastas de modelos treinados: versionar só o .zip, não os arquivos soltos"
-        echo "$IGNORE_LINE"
-    } >> "$GITIGNORE"
-    echo "Adicionada a regra '$IGNORE_LINE' ao .gitignore"
-fi
 
+# Regras que devem ser adicionadas ao .gitignore
+IGNORE_LINES=(
+    "**/models/"
+    "**/tf-env/"
+    "**/venv/"
+    "**/ModelosVariacao/"
+    "**/Model_OTM-20260506T184040Z-3-001/"
+)
+
+# Adiciona cada regra caso ela ainda não exista
+for IGNORE_LINE in "${IGNORE_LINES[@]}"; do
+    if ! grep -qxF "$IGNORE_LINE" "$GITIGNORE"; then
+        {
+            echo ""
+            echo "# Pastas ignoradas automaticamente"
+            echo "$IGNORE_LINE"
+        } >> "$GITIGNORE"
+
+        echo "Adicionada a regra '$IGNORE_LINE' ao .gitignore"
+    fi
+done
 # ---------------------------------------------------------------------------
 # 3. Encontra cada pasta "models" e compacta
 # ---------------------------------------------------------------------------

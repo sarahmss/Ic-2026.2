@@ -1,0 +1,17 @@
+
+# Pastas de modelos treinados: versionar só o .zip, não os arquivos soltos
+**/models/
+./tf-env
+./venv
+
+# Pastas ignoradas automaticamente
+**/tf-env/
+
+# Pastas ignoradas automaticamente
+**/venv/
+
+# Pastas ignoradas automaticamente
+**/ModelosVariacao/
+
+# Pastas ignoradas automaticamente
+**/Model_OTM-20260506T184040Z-3-001/
